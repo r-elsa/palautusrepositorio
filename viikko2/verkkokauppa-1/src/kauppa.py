@@ -1,9 +1,10 @@
 from ostoskori import Ostoskori
-from viitegeneraattori import Viitegeneraattori
-
+from viitegeneraattori import the_viitegeneraattori_olio
+from varasto import the_varasto_olio
+from pankki import the_pankki_olio
 
 class Kauppa:
-    def __init__(self, varasto, pankki, viitegen):
+    def __init__(self, varasto=the_varasto_olio, pankki= the_pankki_olio, viitegen= the_viitegeneraattori_olio):
         self._varasto = varasto
         self._pankki = pankki
         self._viitegeneraattori = viitegen
@@ -11,6 +12,7 @@ class Kauppa:
 
     def aloita_asiointi(self):
         self._ostoskori = Ostoskori()
+       
 
     def poista_korista(self, id):
         tuote = self._varasto.hae_tuote(id)
@@ -28,3 +30,4 @@ class Kauppa:
         summa = self._ostoskori.hinta()
 
         return self._pankki.tilisiirto(nimi, viite, tili_numero, self._kaupan_tili, summa)
+
