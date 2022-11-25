@@ -22,9 +22,9 @@ class TestOstoskori(unittest.TestCase):
     
     def test_kahden_tuotteen_lisaamisen_jalkeen_korissa_kaksi_tavaraa(self):
         porkkana = Tuote("Porkkana", 7)
-        tomaatti = Tuote("Tomaatti", 1.35)
+        salaatti = Tuote("Salaatti", 1.35)
         self.kori.lisaa_tuote(porkkana)
-        self.kori.lisaa_tuote(tomaatti)
+        self.kori.lisaa_tuote(salaatti)
         self.assertEqual(self.kori.tavaroita_korissa(),2)
 
 
