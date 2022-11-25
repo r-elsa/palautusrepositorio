@@ -13,6 +13,8 @@ def init():
     print(ostos2.tuote)
     ostoskori = Ostoskori()
     print(ostoskori.tavaroita_korissa())
+    ostoskori.lisaa_tuote(ostos)
+    print(ostoskori.tavaroita_korissa())
 
 
 if __name__=="__main__":
