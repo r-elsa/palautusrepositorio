@@ -8,12 +8,12 @@ def init():
     tuote = Tuote("valion plusmaito", 0.80)
     tuote2 = Tuote("vehnäjauhoja", 0.55)
     
-
     ostoskori = Ostoskori()
-    print(ostoskori.tavaroita_korissa())
     ostoskori.lisaa_tuote(tuote)
-    ostoskori.lisaa_tuote(tuote2)
     print(ostoskori.ostokset()[0])
+    print(ostoskori.ostokset()[0].tuotteen_nimi())
+  
+
 
 
 if __name__=="__main__":
