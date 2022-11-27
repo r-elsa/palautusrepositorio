@@ -3,34 +3,41 @@ from ostos import Ostos
 
 class Ostoskori:
     def __init__(self):
-        self.ostoskori = []
-        self.ostoksia={}
+        self.ostoskori = {}
         # ostoskori tallettaa Ostos-oliota, yhden per korissa oleva Tuote
 
     def tavaroita_korissa(self):
-            return (sum(self.ostoksia.values()))
+            """ for i in self.ostoskori:
+                print(self.ostoskori[i].tuote)
+                print(self.ostoskori[i].lukumaara()) """
+
+            tavaroita = 0
+            for i in list(self.ostoskori):
+                tavaroita += self.ostoskori[i].lukumaara()
+            return tavaroita 
+
         # kertoo korissa olevien tavaroiden lukumäärän
         # eli jos koriin lisätty 2 kpl tuotetta "maito", tulee metodin palauttaa 2 
         # samoin jos korissa on 1 kpl tuotetta "maito" ja 1 kpl tuotetta "juusto", tulee metodin palauttaa 2 
 
     def hinta(self):
         # kertoo korissa olevien ostosten yhteenlasketun hinnan
-        hintojensumma = sum(i.hinta() for i in self.ostoskori)
-        return hintojensumma
-        
+        summa = 0
+        for i in list(self.ostoskori):
+            summa += self.ostoskori[i].hinta()
+        return summa
 
+        
     def lisaa_tuote(self, lisattava: Tuote):
         ostosolio =Ostos(lisattava)
-        self.ostoskori.append(ostosolio)
+        tuotteennimi = ostosolio.tuotteen_nimi()      
 
-        tuotenimi = ostosolio.tuotteen_nimi()
-
-        if tuotenimi in self.ostoksia:
-            self.ostoksia[tuotenimi] +=1
+        if tuotteennimi in self.ostoskori.keys():
+            self.ostoskori[tuotteennimi].muuta_lukumaaraa(1)
         else:
-            self.ostoksia[tuotenimi]=1
-
-
+            self.ostoskori[tuotteennimi] = ostosolio
+        
+    
     def tuotteen_nimi(self):
         return self.tuote.nimi()
         
@@ -44,7 +51,10 @@ class Ostoskori:
         # tyhjentää ostoskorin
 
     def ostokset(self):
-        return list(self.ostoskori)
+        lista = []
+        for key, value in self.ostoskori.items():
+            lista.append((key,value.lukumaara()))
+        return lista
         
         # palauttaa listan jossa on korissa olevat ostos-oliot
         # kukin ostos-olio siis kertoo mistä tuotteesta on kyse JA kuinka monta kappaletta kyseistä tuotetta korissa on

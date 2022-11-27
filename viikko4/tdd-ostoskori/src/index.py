@@ -10,11 +10,16 @@ def init():
     
     ostoskori = Ostoskori()
     ostoskori.lisaa_tuote(tuote)
-    print(ostoskori.ostokset()[0])
-    print(ostoskori.ostokset()[0].tuotteen_nimi())
+    ostoskori.lisaa_tuote(tuote)
+    ostoskori.lisaa_tuote(tuote2)
+    ostos = ostoskori.ostokset()[0][0]
+    print(ostos)
+    """ print(ostoskori.tavaroita_korissa())
+    print(ostoskori.ostokset()) """
+
+ 
+
   
-
-
 
 if __name__=="__main__":
     init()

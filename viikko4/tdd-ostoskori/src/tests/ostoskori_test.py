@@ -42,15 +42,15 @@ class TestOstoskori(unittest.TestCase):
     def test_yhden_tuotteen_lisaamisen_jalkeen_korissa_yksi_ostosolio(self):   
         maito = Tuote("Maito", 3)
         self.kori.lisaa_tuote(maito)
-        self.assertEqual(self.kori.tavaroita_korissa(),1)
+        self.assertEqual(len(self.kori.ostokset()),1)
 
     def test_yhden_tuotteen_lisaamisen_jalkeen_korissa_yksi_ostosolio_jolla_oikea_tuotteen_nimi_ja_maara(self):
         maito = Tuote("Maito", 3)
         self.kori.lisaa_tuote(maito)
         ostos = self.kori.ostokset()[0]
         # testaa täällä, että palautetun listan ensimmäinen ostos on halutunkaltainen.
-        self.assertEqual(ostos.tuotteen_nimi(),"Maito")
-        self.assertEqual(ostos.lukumaara(),1)
+        self.assertEqual(ostos[0],"Maito")
+        self.assertEqual(ostos[1],1)
 
     def test_kahden_eri_tuotteen_lisaamisen_jalkeen_korissa_kaksi_ostosta(self):
         maito = Tuote("Maito", 3)
@@ -63,7 +63,14 @@ class TestOstoskori(unittest.TestCase):
         maito = Tuote("Maito", 3)
         self.kori.lisaa_tuote(maito)
         self.kori.lisaa_tuote(maito)
-        self.assertEqual(len(self.kori.ostoksia),1)
+        self.assertEqual(len(self.kori.ostokset()),1)
+    
+    def test_kahden_saman_tuotteen_lisaamisen_jalkeen_korissa_ostos_sama_nimi_lukumaara_kaksi(self):
+        maito = Tuote("Maito", 3)
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(maito)
+        self.assertEqual((self.kori.ostokset()[0][0]),"Maito")
+        self.assertEqual((self.kori.ostokset()[0])[1],2)
 
 
 
