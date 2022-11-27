@@ -13,7 +13,7 @@ def init():
     print(ostoskori.tavaroita_korissa())
     ostoskori.lisaa_tuote(tuote)
     ostoskori.lisaa_tuote(tuote2)
-    print(ostoskori.hinta())
+    print(ostoskori.ostokset()[0])
 
 
 if __name__=="__main__":
