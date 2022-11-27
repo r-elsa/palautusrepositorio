@@ -48,6 +48,12 @@ class Ostoskori:
         if tuotteennimi in self.ostoskori.keys():
             self.ostoskori[tuotteennimi].muuta_lukumaaraa(-1)
 
+            
+
+            if self.ostoskori[tuotteennimi].lukumaara()==0:
+                del self.ostoskori[tuotteennimi]
+
+
         # poistaa tuotteen
         
 
