@@ -11,8 +11,11 @@ def init():
     ostoskori = Ostoskori()
  
     ostoskori.lisaa_tuote(tuote2)
-    ostoskori.poista_tuote(tuote2)
+    ostoskori.lisaa_tuote(tuote2)
+    ostoskori.lisaa_tuote(tuote)
+    ostoskori.tyhjenna()
     print(ostoskori.ostokset())
+    
     """ print(ostoskori.tavaroita_korissa())
     print(ostoskori.ostokset()) """
 

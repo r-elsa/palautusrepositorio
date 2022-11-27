@@ -58,7 +58,7 @@ class Ostoskori:
         
 
     def tyhjenna(self):
-        pass
+        self.ostoskori.clear()
         # tyhjentää ostoskorin
 
     def ostokset(self):
