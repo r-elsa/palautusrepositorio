@@ -12,66 +12,27 @@ def main():
     stats = Statistics(reader)
 
     query = QueryBuilder()
-    #matcher = query.build()
-    #matcher = query.playsIn("NYR").build()
-    #matcher = query.playsIn("NYR").hasAtLeast(10, "goals").hasFewerThan(20, "goals").build()
-
+   
     matcher = (
-      query
-      .playsIn("NYR")
-      .hasAtLeast(10, "goals")
-      .hasFewerThan(20, "goals")
-      .build()
+    query
+        .oneOf(
+        query.playsIn("PHI")
+            .hasAtLeast(10, "assists")
+            .hasFewerThan(5, "goals")
+            .build(),
+        query.playsIn("EDM")
+            .hasAtLeast(50, "points")
+            .build()
+        )
+        .build()
     )
 
+   
     for player in stats.matches(matcher):
-        print(player)
+            print(player)
 
 
-    """ matcher = Or(
-    HasAtLeast(45, "goals"),
-    HasAtLeast(70, "assists")
-    ) """
-
-    """ matcher3 = And(
-    HasAtLeast(70, "points"),
-    Or(
-        PlaysIn("NYR"),
-        PlaysIn("FLA"),
-        PlaysIn("BOS")
-    )
-    )
-    """
-    """  matcher = And(
-        HasFewerThan(5, "goals"),
-        HasFewerThan(5, "assists"),
-        PlaysIn("PHI")
-    ) """ 
-
-    """ matcher1 = And(
-    Not(HasAtLeast(1, "goals")),
-    PlaysIn("NYR")
-    )
-     """
-    """  matcher2 = And(
-    HasFewerThan(1, "goals"),
-    PlaysIn("NYR")
-    ) """
-
-
-    """ matcher2 = And(
-    Not(HasAtLeast(1, "goals")),
-    PlaysIn("NYR")
-    ) """ 
-
-    """ filtered_with_all = stats.matches(All())
-    print(len(filtered_with_all)) """
-
-    """ for player in stats.matches(matcher3):
-        print(player) """ 
     
    
-
-
 if __name__ == "__main__":
     main()
